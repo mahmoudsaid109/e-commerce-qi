@@ -12,6 +12,7 @@ export class ProdutCardComponent {
   @Output() addToCart = new EventEmitter<Product>();
 
   onAddToCart() {
+    console.log('button clicked', this.product.title);
     this.addToCart.emit(this.product);
   }
 }

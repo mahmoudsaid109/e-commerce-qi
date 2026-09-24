@@ -1,1 +1,35 @@
-<p>hopping-cart-summary works!</p>
+<div class="container py-5">
+  <div class="cart-container mt-4 p-4 border rounded shadow-sm bg-white">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="mb-0">Shopping Cart 🛒</h3>
+      <button class="btn btn-outline-danger" (click)="cartService.closeCart()">
+        Close Cart
+      </button>
+    </div>
+
+    @if (cartList.length === 0) {
+      <div class="alert alert-info text-center" role="alert">
+        Your cart is currently empty.
+      </div>
+    } @else {
+      <ul class="list-group">
+        @for (item of cartList; track item.id) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <img [src]="item.image" alt="{{ item.title }}" style="width: 50px; height: 50px; object-fit: contain;" class="me-3 rounded bg-white border p-1">
+              <div>
+                <h6 class="mb-0 text-truncate" style="max-width: 300px;">{{ item.title }}</h6>
+                <small class="text-success fw-bold">${{ item.price }}</small>
+              </div>
+            </div>
+            <span class="badge bg-primary rounded-pill">1</span>
+          </li>
+        }
+      </ul>
+      
+      <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+        <button class="btn btn-success px-4">Checkout</button>
+      </div>
+    }
+  </div>
+</div>

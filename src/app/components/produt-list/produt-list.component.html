@@ -1,9 +1,27 @@
-<app-navBar></app-navBar>
 <div class="container py-5">
-  <!-- Header -->
+  
+  @if (cartService.isCartVisible) {
+    <app-hopping-cart-summary></app-hopping-cart-summary>
+  }
+  
   <div class="text-center mb-5">
     <h1 class="fw-bold">Product Catalog</h1>
     <p class="text-muted">Find the products you are looking for</p>
   </div>
- <app-produt-filter [products]="products"></app-produt-filter>
+  <app-produt-filter [products]="products"></app-produt-filter>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-4">
+    @for (item of products; track item.id) {
+      <div class="col">
+        <app-produt-card 
+          [product]="item" 
+          (addToCart)="handleAddToCart($event)">
+        </app-produt-card>
+      </div>
+    } @empty {
+      <div class="col-12 text-center text-danger">
+      </div>
+    }
+  </div>
+
 </div>

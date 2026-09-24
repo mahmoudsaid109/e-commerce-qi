@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-hopping-cart-summary',
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './hopping-cart-summary.html',
   styleUrl: './hopping-cart-summary.css',
 })
-export class HoppingCartSummary {}
+export class HoppingCartSummary {
+  cartService = inject(CartService);
+
+  get cartList() {
+    return this.cartService.getCartItems();
+  }
+}
