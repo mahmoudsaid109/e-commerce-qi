@@ -1,17 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { productDataList } from '../../models/product_data_list';
 import { FormsModule } from '@angular/forms';
-import { ProdutCardComponent } from '../produt-card/produt-card.component';
 
 @Component({
   selector: 'app-produt-filter',
-  imports: [FormsModule, ProdutCardComponent],
+  imports: [FormsModule],
   templateUrl: './produt-filter.html',
   styleUrl: './produt-filter.css',
 })
-export class ProdutFilter {
+export class ProdutFilter implements OnInit {
   @Input({ required: true }) products!: Product[];
+  @Output() filterChanged = new EventEmitter<Product[]>();
+  
   searchInput = '';
   selectedCategory = 'all';
 
@@ -19,12 +19,22 @@ export class ProdutFilter {
     return [...new Set(this.products.map((product) => product.category))];
   }
 
-  filteredProducts(): Product[] {
-    return this.products.filter((product) => {
+  ngOnInit() {
+    this.emitFilter();
+  }
+
+  onFilterChange() {
+    this.emitFilter();
+  }
+
+  emitFilter() {
+    if (!this.products) return;
+    const filtered = this.products.filter((product) => {
       const matchesSearch = product.title.toLowerCase().includes(this.searchInput.toLowerCase());
       const matchesCategory =
         this.selectedCategory === 'all' || product.category === this.selectedCategory;
       return matchesSearch && matchesCategory;
     });
+    this.filterChanged.emit(filtered);
   }
 }

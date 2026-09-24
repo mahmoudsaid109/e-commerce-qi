@@ -15,10 +15,15 @@ import { HoppingCartSummary } from '../hopping-cart-summary/hopping-cart-summary
 })
 export class ProdutListComponent {
   products: Product[] = productDataList;
+  displayedProducts: Product[] = productDataList;
   cartService = inject(CartService);
 
   handleAddToCart(selectedProduct: Product) {
     this.cartService.addToCart(selectedProduct);
     alert('تم إضافة ' + selectedProduct.title + ' إلى السلة بنجاح!');
+  }
+
+  onFilterChanged(filtered: Product[]) {
+    this.displayedProducts = filtered;
   }
 }
