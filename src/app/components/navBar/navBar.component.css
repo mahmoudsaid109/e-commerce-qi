@@ -1,0 +1,101 @@
+
+.custom-navbar {
+  background-color: #ffffff;
+  padding: 16px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.custom-brand {
+  font-size: 26px;
+  font-weight: 700;
+  color: #212529;
+  text-decoration: none;
+}
+
+.custom-brand span {
+  color: #6c63ff;
+}
+
+
+.custom-link {
+  color: #555555;
+  font-weight: 500;
+  margin: 0 10px;
+  padding: 8px 4px !important;
+  transition: 0.2s ease;
+}
+
+.custom-link:hover {
+  color: #6c63ff;
+}
+
+/* Active Link */
+.custom-link.active {
+  color: #6c63ff;
+  font-weight: 600;
+}
+
+/* Right Side */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Cart */
+.action-btn {
+  position: relative;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+
+  background-color: #6c63ff;
+  color: white;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+/* Login */
+.login-btn {
+  background-color: #6c63ff;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+}
+
+.login-btn:hover {
+  background-color: #554de0;
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .navbar-actions {
+    margin-top: 15px;
+  }
+
+  .custom-link {
+    margin: 5px 0;
+  }
+}
+
