@@ -3,14 +3,8 @@
     <a class="navbar-brand custom-brand" routerLink="/">
       Shop<span>.</span>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,37 +18,26 @@
             Home
           </a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link custom-link" href="#">
-            Products
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link custom-link" href="#">
-            Categories
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link custom-link" href="#">
-            About
-          </a>
-        </li>
-
       </ul>
-     <div class="navbar-actions">
-  <button (click)="cartService.toggleCart()" class="action-btn position-relative border-0 bg-transparent fs-4 text-dark">
-    🛒
-    @if (cartCount > 0) {
-      <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-        {{ cartCount }}
-      </span>
-    }
-  </button>
-</div>
+      <div class="navbar-actions d-flex align-items-center gap-3">
+        <button class="btn btn-outline-primary" (click)="toggleLogin()">
+          @if (authService.isLoggedIn) {
+          Logout
+          } @else {
+          Login
+          }
+        </button>
+        <a routerLink="/cart"
+          class="action-btn position-relative border-0 bg-transparent fs-4 text-dark text-decoration-none">
+          🛒
+          @if (cartCount > 0) {
+          <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="font-size: 0.6rem;">
+            {{ cartCount }}
+          </span>
+          }
+        </a>
+      </div>
     </div>
   </div>
 </nav>
-

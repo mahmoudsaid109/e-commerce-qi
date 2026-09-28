@@ -14,6 +14,18 @@ export class CartService {
     this.cartItems.push(product);
   }
 
+  removeItem(productId: number) {
+    this.cartItems = this.cartItems.filter(item => item.id !== productId);
+  }
+
+  clearCart() {
+    this.cartItems = [];
+  }
+
+  getTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price, 0);
+  }
+
   getCartItems(): Product[] {
     return this.cartItems;
   }

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-produt-card',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './produt-card.component.html',
   styleUrl: './produt-card.component.css',
 })

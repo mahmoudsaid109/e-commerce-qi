@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, inject } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-produt-filter',
@@ -9,17 +10,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './produt-filter.css',
 })
 export class ProdutFilter implements OnInit {
-  @Input({ required: true }) products!: Product[];
   @Output() filterChanged = new EventEmitter<Product[]>();
   
+  productService = inject(ProductService);
+
   searchInput = '';
   selectedCategory = 'all';
-
-  get categories(): string[] {
-    return [...new Set(this.products.map((product) => product.category))];
-  }
+  categories: string[] = [];
 
   ngOnInit() {
+    this.categories = this.productService.getCategories();
     this.emitFilter();
   }
 
@@ -28,13 +28,7 @@ export class ProdutFilter implements OnInit {
   }
 
   emitFilter() {
-    if (!this.products) return;
-    const filtered = this.products.filter((product) => {
-      const matchesSearch = product.title.toLowerCase().includes(this.searchInput.toLowerCase());
-      const matchesCategory =
-        this.selectedCategory === 'all' || product.category === this.selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
+    const filtered = this.productService.filterProducts(this.searchInput, this.selectedCategory);
     this.filterChanged.emit(filtered);
   }
 }
