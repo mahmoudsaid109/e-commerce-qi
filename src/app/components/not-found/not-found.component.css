@@ -1,0 +1,21 @@
+.not-found-container {
+  min-height: 70vh;
+}
+
+.error-code {
+  font-size: 8rem;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
