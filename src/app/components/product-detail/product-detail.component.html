@@ -1,35 +1,33 @@
 <div class="container py-5">
   @if (product) {
-    <div class="row">
-      <div class="col-md-6 mb-4 text-center">
-        <img [src]="product.image" [alt]="product.title" class="img-fluid rounded shadow-sm" style="max-height: 400px; object-fit: contain;">
+  <div class="row">
+    <div class="col-md-6 mb-4 text-center">
+      <img [src]="product.image" [alt]="product.title" class="img-fluid rounded shadow-sm"
+        style="max-height: 400px; object-fit: contain;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3">{{ product.title }}</h2>
+      <div class="mb-3">
+        <span class="badge bg-secondary me-2">{{ product.category }}</span>
+        <span class="text-warning">
+          <i class="bi bi-star-fill"></i> {{ product.rating.rate }} ({{ product.rating.count }} reviews)
+        </span>
       </div>
-      <div class="col-md-6">
-        <h2 class="fw-bold mb-3">{{ product.title }}</h2>
-        <div class="mb-3">
-          <span class="badge bg-secondary me-2">{{ product.category }}</span>
-          <span class="text-warning">
-            <i class="bi bi-star-fill"></i> {{ product.rating.rate }} ({{ product.rating.count }} reviews)
-          </span>
-        </div>
-        <h3 class="text-primary mb-4">${{ product.price }}</h3>
-        <p class="lead mb-4">{{ product.description }}</p>
-        
-        <div class="d-grid gap-2 d-md-block">
-          <button class="btn btn-primary btn-lg me-md-2" (click)="addToCart()" [disabled]="!product.inStock">
-            <i class="bi bi-cart-plus"></i> Add to Cart
-          </button>
-          <a routerLink="/products" class="btn btn-outline-secondary btn-lg">Back to Products</a>
-        </div>
-        @if (!product.inStock) {
-          <p class="text-danger mt-3">Currently out of stock</p>
-        }
+      <h3 class="text-primary mb-4">${{ product.price }}</h3>
+      <p class="lead mb-4">{{ product.description }}</p>
+
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-primary btn-lg me-md-2" (click)="addToCart()">
+          <i class="bi bi-cart-plus"></i> Add to Cart
+        </button>
+        <a routerLink="/products" class="btn btn-outline-secondary btn-lg">Back to Products</a>
       </div>
     </div>
+  </div>
   } @else {
-    <div class="text-center py-5">
-      <h2>Product not found</h2>
-      <a routerLink="/products" class="btn btn-primary mt-3">Back to Products</a>
-    </div>
+  <div class="text-center py-5">
+    <h2>Product not found</h2>
+    <a routerLink="/products" class="btn btn-primary mt-3">Back to Products</a>
+  </div>
   }
 </div>

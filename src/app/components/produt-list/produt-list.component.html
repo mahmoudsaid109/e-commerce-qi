@@ -4,7 +4,7 @@
     <h1 class="fw-bold">Product Catalog</h1>
     <p class="text-muted">Find the products you are looking for</p>
   </div>
-  <app-produt-filter (filterChanged)="onFilterChanged($event)"></app-produt-filter>
+  <app-produt-filter [products]="products" (filterChanged)="onFilterChanged($event)"></app-produt-filter>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-4">
     @for (item of displayedProducts; track item.id) {

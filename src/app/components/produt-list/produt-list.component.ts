@@ -22,8 +22,20 @@ export class ProdutListComponent implements OnInit {
   authService = inject(AuthService);
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
-    this.displayedProducts = this.products;
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.displayedProducts = this.products;
+      },
+      error: (err) => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to load products',
+        });
+      }
+    })
   }
 
   handleAddToCart(selectedProduct: Product) {
@@ -35,12 +47,12 @@ export class ProdutListComponent implements OnInit {
       });
       return;
     }
-    
+
     this.cartService.addToCart(selectedProduct);
     Swal.fire({
       icon: 'success',
       title: 'Added to Cart',
-      text: 'تم إضافة ' + selectedProduct.title + ' إلى السلة بنجاح!',
+      text: selectedProduct.title + ' Added to Cart successfully!',
       timer: 1500,
       showConfirmButton: false
     });

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductDetailComponent implements OnInit {
   product: Product | undefined;
-  
+
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
   private cartService = inject(CartService);
@@ -24,7 +24,12 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.product = this.productService.getProductById(id);
+      this.productService.getProductById(id).subscribe({
+        next: (product) => {
+          this.product = product;
+        },
+        error: (err) => console.error(err)
+      });
     }
   }
 
@@ -43,7 +48,7 @@ export class ProductDetailComponent implements OnInit {
       Swal.fire({
         icon: 'success',
         title: 'Added to Cart',
-        text: 'تم إضافة ' + this.product.title + ' إلى السلة بنجاح!',
+        text: this.product.title + ' Added to Cart successfully!',
         timer: 1500,
         showConfirmButton: false
       });
