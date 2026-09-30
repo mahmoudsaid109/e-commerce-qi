@@ -21,7 +21,6 @@ export const errorInterceptor: HttpInterceptorFn = (request, next) => {
         text: 'Something went wrong while connecting to the server. Please try again later.',
         confirmButtonColor: '#d33'
       });
-
       return throwError(() => new Error(errorMessage));
     })
   );
