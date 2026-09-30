@@ -10,9 +10,13 @@
             <strong>Total Amount:</strong> ${{ cartService.getTotal() | number:'1.2-2' }}
           </div>
 
-          <button class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold" (click)="processCheckout()">
-            <i class="bi bi-credit-card me-2"></i> Confirm and Pay
-          </button>
+          @if (!showForm) {
+            <button class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold" (click)="showForm = true">
+              Proceed to Payment
+            </button>
+          } @else {
+            <app-checkout-form (checkoutComplete)="processCheckout()"></app-checkout-form>
+          }
         </div>
       </div>
     </div>

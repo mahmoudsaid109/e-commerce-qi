@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import Swal from 'sweetalert2';
+import { CheckoutForm } from '../checkout-form/checkout-form';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CheckoutForm],
   templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent {
   cartService = inject(CartService);
   router = inject(Router);
+  showForm = false;
 
   processCheckout() {
     Swal.fire({
