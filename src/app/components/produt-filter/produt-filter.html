@@ -10,8 +10,7 @@
           type="text"
           class="form-control"
           placeholder="Search products..."
-          [(ngModel)]="searchInput"
-          (ngModelChange)="onFilterChange()"
+          [formControl]="searchControl"
         />
       </div>
     </div>

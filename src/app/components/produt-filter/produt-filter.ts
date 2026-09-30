@@ -1,11 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-produt-filter',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './produt-filter.html',
   styleUrl: './produt-filter.css',
 })
@@ -15,6 +17,7 @@ export class ProdutFilter implements OnInit, OnChanges {
 
   productService = inject(ProductService);
 
+  searchControl = new FormControl('');
   searchInput = '';
   selectedCategory = 'all';
   categories: string[] = [];
@@ -26,6 +29,19 @@ export class ProdutFilter implements OnInit, OnChanges {
       },
       error: (err) => console.error(err)
     });
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(searchInputWord => {
+        this.searchInput = searchInputWord || '';
+        const filtered = this.productService.filterProducts(this.products, this.searchInput, this.selectedCategory);
+        return of(filtered);
+      })
+    ).subscribe(filtered => {
+      this.filterChanged.emit(filtered);
+    });
+
     this.emitFilter();
   }
 
