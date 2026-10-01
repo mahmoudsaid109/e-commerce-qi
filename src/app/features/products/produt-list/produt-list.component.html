@@ -4,27 +4,35 @@
     <h1 class="fw-bold">Product Catalog</h1>
     <p class="text-muted">Find the products you are looking for</p>
   </div>
-  <app-produt-filter [products]="products" (filterChanged)="onFilterChanged($event)"></app-produt-filter>
+  @if (isLoading) {
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+      <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else {
+    <app-produt-filter [products]="products" (filterChanged)="onFilterChanged($event)"></app-produt-filter>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-4">
-    @for (item of displayedProducts; track item.id) {
-      <div class="col">
-        @defer (on viewport) {
-          <app-produt-card 
-            [product]="item" 
-            (addToCart)="handleAddToCart($event)">
-          </app-produt-card>
-        } @placeholder {
-          <div class="card p-3 shadow-sm text-center border-0" style="min-height: 350px;">
-            <div class="text-muted mt-auto mb-auto">Loading...</div>
-          </div>
-        }
-      </div>
-    } @empty {
-      <div class="col-12 text-center text-danger">
-        <p>No products found</p>
-      </div>
-    }
-  </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-4">
+      @for (item of displayedProducts; track item.id) {
+        <div class="col">
+          @defer (on viewport) {
+            <app-produt-card 
+              [product]="item" 
+              (addToCart)="handleAddToCart($event)">
+            </app-produt-card>
+          } @placeholder {
+            <div class="card p-3 shadow-sm text-center border-0" style="min-height: 350px;">
+              <div class="text-muted mt-auto mb-auto">Loading...</div>
+            </div>
+          }
+        </div>
+      } @empty {
+        <div class="col-12 text-center text-danger">
+          <p>No products found</p>
+        </div>
+      }
+    </div>
+  }
 
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ProdutCardComponent } from '../../../shared/components/produt-card/produt-card.component';
 import { FormsModule } from '@angular/forms';
@@ -18,18 +18,24 @@ import Swal from 'sweetalert2';
 export class ProdutListComponent implements OnInit {
   products: Product[] = [];
   displayedProducts: Product[] = [];
+  isLoading = true;
   cartService = inject(CartService);
   productService = inject(ProductService);
   authService = inject(AuthService);
+  changeDetector = inject(ChangeDetectorRef);
 
   ngOnInit() {
     this.productService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
         this.displayedProducts = this.products;
+        this.isLoading = false;
+        this.changeDetector.markForCheck();
       },
       error: (err) => {
         console.error(err);
+        this.isLoading = false;
+        this.changeDetector.markForCheck();
         Swal.fire({
           icon: 'error',
           title: 'Error',

@@ -25,10 +25,10 @@ export class CheckoutComponent {
       timer: 3000,
       showConfirmButton: true,
       confirmButtonColor: '#198754',
-      confirmButtonText: 'Back to Home'
+      confirmButtonText: 'Back to Products'
     }).then(() => {
       this.cartService.clearCart();
-      this.router.navigate(['/']);
+      this.router.navigate(['/products']);
     });
   }
 }
