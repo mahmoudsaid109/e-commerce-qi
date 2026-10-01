@@ -18,7 +18,7 @@
             Home
           </a>
         </li>
-        @if (authService.isLoggedIn) {
+        @if (authService.isLoggedIn && authService.role === 'admin') {
         <li class="nav-item">
           <a class="nav-link custom-link" routerLink="/admin-dashboard">
             Dashboard
@@ -33,7 +33,7 @@
         </button>
         }
 
-        @if (!authService.isLoggedIn && router.url !== '/' && !router.url.includes('admin')) {
+        @if (authService.isLoggedIn && authService.role === 'user') {
         <a routerLink="/cart"
           class="action-btn position-relative border-0 bg-transparent fs-4 text-dark text-decoration-none">
           🛒

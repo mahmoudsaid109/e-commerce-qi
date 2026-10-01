@@ -40,7 +40,7 @@ export class AuthForm implements OnInit {
       const { email, password } = this.loginForm.value;
       if (this.role === 'admin') {
         if (email === 'mahmoud@gmail.com' && password === 'admin123') {
-          this.authService.login();
+          this.authService.login('admin');
           Swal.fire('Success', 'Logged in as Admin', 'success');
           this.router.navigate(['/admin-dashboard']);
         } else {
@@ -52,6 +52,7 @@ export class AuthForm implements OnInit {
         } else {
           Swal.fire('Success', 'Registered successfully', 'success');
         }
+        this.authService.login('user');
         this.router.navigate(['/products']);
       }
     }
