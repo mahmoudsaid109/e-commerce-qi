@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ProdutCardComponent } from '../../../shared/components/produt-card/produt-card.component';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-produt-list',
   imports: [FormsModule, ProdutFilter, ProdutCardComponent],
   templateUrl: './produt-list.component.html',

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { Product } from '../../../core/models/product.model';
 import { MatTableModule } from '@angular/material/table';
@@ -9,6 +9,7 @@ import { ProductForm } from '../product-form/product-form';
 import Swal from 'sweetalert2';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-admin-dashboard',
   imports: [MatTableModule, MatButtonModule, MatIconModule, MatDialogModule],
   templateUrl: './admin-dashboard.html',
