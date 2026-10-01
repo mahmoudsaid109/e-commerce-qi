@@ -27,13 +27,13 @@
         }
       </ul>
       <div class="navbar-actions d-flex align-items-center gap-3">
-        <button class="btn btn-outline-primary" (click)="toggleLogin()">
-          @if (authService.isLoggedIn) {
+        @if (authService.isLoggedIn) {
+        <button class="btn btn-outline-primary" (click)="logout()">
           Logout
-          } @else {
-          Login
-          }
         </button>
+        }
+
+        @if (!authService.isLoggedIn && router.url !== '/' && !router.url.includes('admin')) {
         <a routerLink="/cart"
           class="action-btn position-relative border-0 bg-transparent fs-4 text-dark text-decoration-none">
           🛒
@@ -44,6 +44,7 @@
           </span>
           }
         </a>
+        }
       </div>
     </div>
   </div>

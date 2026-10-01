@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,30 +13,21 @@ import Swal from 'sweetalert2';
 export class NavBarComponent {
   cartService = inject(CartService);
   authService = inject(AuthService);
+  router = inject(Router);
 
   get cartCount(): number {
     return this.cartService.getCartCount();
   }
 
-  toggleLogin() {
-    if (this.authService.isLoggedIn) {
-      this.authService.logout();
-      Swal.fire({
-        icon: 'info',
-        title: 'Logged Out',
-        text: 'You have successfully logged out.',
-        timer: 2000,
-        showConfirmButton: false
-      });
-    } else {
-      this.authService.login();
-      Swal.fire({
-        icon: 'success',
-        title: 'Logged In',
-        text: 'You have successfully logged in!',
-        timer: 2000,
-        showConfirmButton: false
-      });
-    }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+    Swal.fire({
+      icon: 'info',
+      title: 'Logged Out',
+      text: 'You have successfully logged out.',
+      timer: 2000,
+      showConfirmButton: false
+    });
   }
 }
