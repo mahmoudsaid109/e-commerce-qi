@@ -17,7 +17,7 @@ export class RoleSelection {
     if (role === 'admin') {
       this.router.navigate(['/admin-login']);
     } else {
-      this.router.navigate(['/products']);
+      this.router.navigate(['/user-login']);
     }
   }
 }

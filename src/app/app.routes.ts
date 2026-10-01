@@ -8,7 +8,13 @@ export const routes: Routes = [
   },
   { 
     path: 'admin-login', 
-    loadComponent: () => import('./features/auth/admin-login/admin-login').then(m => m.AdminLogin) 
+    loadComponent: () => import('./shared/components/auth-form/auth-form').then(m => m.AuthForm),
+    data: { role: 'admin' }
+  },
+  { 
+    path: 'user-login', 
+    loadComponent: () => import('./shared/components/auth-form/auth-form').then(m => m.AuthForm),
+    data: { role: 'user' }
   },
   { 
     path: 'admin-dashboard', 
