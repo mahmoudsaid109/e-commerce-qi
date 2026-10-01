@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { Product } from '../../core/models/product.model';
 import { ProdutCardComponent } from '../produt-card/produt-card.component';
 import { FormsModule } from '@angular/forms';
 import { ProdutFilter } from '../produt-filter/produt-filter';

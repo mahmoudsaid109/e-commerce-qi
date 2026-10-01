@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, inject } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { Product } from '../../core/models/product.model';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';

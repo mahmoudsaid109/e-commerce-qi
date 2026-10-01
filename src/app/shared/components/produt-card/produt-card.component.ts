@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Product } from '../../models/product.model';
+import { Product } from '../../core/models/product.model';
 
 @Component({
   selector: 'app-produt-card',
@@ -9,7 +9,7 @@ import { Product } from '../../models/product.model';
   styleUrl: './produt-card.component.css',
 })
 export class ProdutCardComponent {
-  @Input({required:true}) product!:Product;
+  @Input({ required: true }) product!: Product;
   @Output() addToCart = new EventEmitter<Product>();
 
   onAddToCart() {
