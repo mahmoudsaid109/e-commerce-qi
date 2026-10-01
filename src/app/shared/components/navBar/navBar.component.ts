@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { CartService } from '../../services/cart.service';
-import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../../core/services/cart.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 

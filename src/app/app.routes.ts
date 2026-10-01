@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'cart',
-    loadComponent: () => import('./features/shopping-cart-summary/hopping-cart-summary').then(m => m.HoppingCartSummary)
+    loadComponent: () => import('./features/shopping-cart-summary/shopping-cart-summary').then(m => m.HoppingCartSummary)
   },
   {
     path: 'checkout',

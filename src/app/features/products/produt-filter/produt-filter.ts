@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, inject } from '@angular/core';
-import { Product } from '../../core/models/product.model';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { ProductService } from '../../services/product.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Product } from '../../../core/models/product.model';
+import { ProductService } from '../../../core/services/product.service';
 
 @Component({
   selector: 'app-produt-filter',

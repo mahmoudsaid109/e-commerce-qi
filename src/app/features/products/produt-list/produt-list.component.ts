@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Product } from '../../core/models/product.model';
-import { ProdutCardComponent } from '../produt-card/produt-card.component';
+import { Product } from '../../../core/models/product.model';
+import { ProdutCardComponent } from '../../../shared/components/produt-card/produt-card.component';
 import { FormsModule } from '@angular/forms';
 import { ProdutFilter } from '../produt-filter/produt-filter';
-import { CartService } from '../../services/cart.service';
-import { ProductService } from '../../services/product.service';
-import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../../core/services/cart.service';
+import { ProductService } from '../../../core/services/product.service';
+import { AuthService } from '../../../core/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -7,7 +7,7 @@
           <p class="lead text-muted mb-4">You are about to securely purchase your items.</p>
           
           <div class="alert alert-info mb-4 text-start">
-            <strong>Total Amount:</strong> ${{ cartService.getTotal() | number:'1.2-2' }}
+            <strong>Total Amount:</strong> ${{ cartService.totalPrice() | number:'1.2-2' }}
           </div>
 
           @if (!showForm) {

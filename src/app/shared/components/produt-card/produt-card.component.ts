@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Product } from '../../core/models/product.model';
+import { Product } from '../../../core/models/product.model';
 
 @Component({
   selector: 'app-produt-card',

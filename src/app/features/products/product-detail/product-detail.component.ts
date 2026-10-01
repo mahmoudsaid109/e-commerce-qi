@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Product } from '../../core/models/product.model';
-import { ProductService } from '../../services/product.service';
-import { CartService } from '../../services/cart.service';
-import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+import { Product } from '../../../core/models/product.model';
+import { ProductService } from '../../../core/services/product.service';
+import { CartService } from '../../../core/services/cart.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-product-detail',

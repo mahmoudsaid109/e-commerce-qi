@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CheckoutForm } from '../checkout-form/checkout-form';
 import { CartService } from '../../core/services/cart.service';
+import { CheckoutForm } from '../../shared/components/checkout-form/checkout-form';
 
 @Component({
   selector: 'app-checkout',

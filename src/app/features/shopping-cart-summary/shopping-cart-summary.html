@@ -1,0 +1,68 @@
+<div class="container py-5">
+  <div class="cart-container mt-4 p-4 border rounded shadow-sm bg-white">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="mb-0">Shopping Cart 🛒</h3>
+      @if (cartList.length > 0) {
+      <button class="btn btn-outline-danger" (click)="cartService.clearCart()">
+        Clear Cart
+      </button>
+      }
+    </div>
+
+    @if (cartList.length === 0) {
+    <div class="alert alert-info text-center" role="alert">
+      Your cart is currently empty.
+    </div>
+    <div class="text-center mt-3">
+      <a routerLink="/products" class="btn btn-primary">Go Shopping</a>
+    </div>
+    } @else {
+    <ul class="list-group mb-4">
+      @for (item of cartList; track item.id) {
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img [src]="item.image" alt="{{ item.title }}" style="width: 50px; height: 50px; object-fit: contain;"
+            class="me-3 rounded bg-white border p-1">
+          <div>
+            <h6 class="mb-0 text-truncate" style="max-width: 300px;">{{ item.title }}</h6>
+            <small class="text-success fw-bold">${{ item.price }}</small>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-outline-danger" (click)="cartService.removeItem(item.id)">
+            <i class="bi bi-trash"></i> Remove
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+
+    <div class="pt-3 border-top">
+      <div class="d-flex justify-content-between mb-2">
+        <span>Subtotal (Before Discount):</span>
+        <span>${{ cartService.subTotal() | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between mb-2 text-danger">
+        <span>Discount:</span>
+        <span>-${{ cartService.discountValue() | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between mb-2">
+        <span>Subtotal (After Discount):</span>
+        <span>${{ cartService.subTotalAfterDiscount() | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between mb-2">
+        <span>Tax (10%):</span>
+        <span>${{ cartService.productsTax() | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between mb-3">
+        <span>Delivery:</span>
+        <span>${{ cartService.shipping() | number:'1.2-2' }}</span>
+      </div>
+      <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+        <h4 class="mb-0">Total: ${{ cartService.totalPrice() | number:'1.2-2' }}</h4>
+        <a routerLink="/checkout" class="btn btn-success px-4">Proceed to Checkout</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>
