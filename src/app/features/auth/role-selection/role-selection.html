@@ -1,0 +1,32 @@
+<div class="role-container">
+  <h1 class="mat-headline-2 text-center" style="margin-bottom: 2rem;">Welcome to NgStore Pro</h1>
+  <div class="cards-wrapper">
+    <!-- User Card -->
+    <mat-card class="role-card" (click)="selectRole('user')">
+      <mat-card-header>
+        <mat-card-title>Shopper</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="text-center" style="padding: 2rem 0;">
+        <mat-icon style="font-size: 64px; height: 64px; width: 64px; color: #1976d2;">shopping_cart</mat-icon>
+        <p style="margin-top: 1rem;">Browse products and start shopping.</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="primary">ENTER AS USER</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Admin Card -->
+    <mat-card class="role-card" (click)="selectRole('admin')">
+      <mat-card-header>
+        <mat-card-title>Administrator</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="text-center" style="padding: 2rem 0;">
+        <mat-icon style="font-size: 64px; height: 64px; width: 64px; color: #388e3c;">admin_panel_settings</mat-icon>
+        <p style="margin-top: 1rem;">Manage store inventory and settings.</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="accent">ENTER AS ADMIN</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

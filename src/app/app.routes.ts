@@ -2,7 +2,19 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { 
+    path: '', 
+    loadComponent: () => import('./features/auth/role-selection/role-selection').then(m => m.RoleSelection) 
+  },
+  { 
+    path: 'admin-login', 
+    loadComponent: () => import('./features/auth/admin-login/admin-login').then(m => m.AdminLogin) 
+  },
+  { 
+    path: 'admin-dashboard', 
+    loadComponent: () => import('./features/admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
+    canActivate: [authGuard]
+  },
   {
     path: 'products',
     loadComponent: () => import('./features/products/produt-list/produt-list.component').then(m => m.ProdutListComponent)
